@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:task1/src/util/CustomColors.dart';
 
+import 'AfterLoginPage.dart';
+
 class LoginPage extends StatefulWidget
 {
   @override
@@ -10,7 +12,6 @@ class LoginPage extends StatefulWidget
 }
 class _LoginPageState extends State<LoginPage>
 {
-  final ImagePicker picker=ImagePicker();
   @override
   Widget build(BuildContext context)
   {
@@ -21,17 +22,20 @@ class _LoginPageState extends State<LoginPage>
             children: [
               Stack(
                 children:[
-                Container(
-                width: MediaQuery.of(context).size.width /2,
-                height: MediaQuery.of(context).size.height/4,
-                decoration: BoxDecoration(
-                  color: CustomColors.c5.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(100)
-                ),
-                child:ClipOval(
-                  child: Image.network('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'),
+                Padding(
+                  padding:  const EdgeInsets.only(top: 20),
+                  child: Container(
+                  width: MediaQuery.of(context).size.width /2,
+                  height: MediaQuery.of(context).size.height/4,
+                  decoration: BoxDecoration(
+                    color: CustomColors.c5.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(100)
                   ),
-                ),
+                  child:ClipOval(
+                    child: Image.network('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'),
+                    ),
+                  ),
+                ),  //ImageUploaded
                 ]
               ),
               Expanded(
@@ -45,148 +49,106 @@ class _LoginPageState extends State<LoginPage>
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Email',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Email',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        const SizedBox(height: 10),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
+                      ),
+                      const SizedBox(height: 10),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: CustomColors.c4,
+                        ),
+                        child: const TextField(
+                          style: TextStyle(
+                              color: Colors.white,
                           ),
-                          child: const TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Email',
-                              hintStyle: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Email',
+                            hintStyle: TextStyle(color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.0,
+                              fontSize: 20
                             ),
                           ),
                         ),
-                        const SizedBox(height: 15),
-                        const Text(
-                          'Password',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Password',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
 
+                        ),
+                      ),
+                      const SizedBox(height: 15),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: CustomColors.c4,
+                        ),
+                        child:const TextField(
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
+                            hintText: 'Password',
+                            hintStyle: TextStyle(color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.0,
+                                fontSize: 20
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 15),
-                        Container(
+                      ),
+                      const SizedBox(height: 35),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(
+                                  builder: (context) => AfterLoginPages()));
+                        },
+                        child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.green,
                           ),
-                          child: const TextField(
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Password',
-                              hintStyle: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 35),
-                        GestureDetector(
-                          onTap: () {
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => SecondScreen()));
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.black,
-                            ),
-                            child: const Center(
-                              child: Padding(
-                                padding: EdgeInsets.all(10.0),
-                                child: Text(
-                                  ' Log In',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                          child: const Center(
+                            child: Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                'Log In',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 35),
-                        const Center(
-                          child: Text(
-                            '- Or Sign In with -',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.push(context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => SecondScreen()));
-                              },
-                              child: Container(
-                                width: 60,
-                                height: 60,
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.white38,
-                                ),
-                                child: Image.asset('lib/images/google.png'),
-                              ),
-                            ),
-                            const SizedBox(width: 50),
-                            GestureDetector(
-                              onTap: () {
-                                // Navigator.push(context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => SecondScreen()));
-                              },
-                              child: Container(
-                                width: 60,
-                                height: 60,
-                                padding: const EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.white38,
-                                ),
-                                child: Image.asset('lib/images/facebook.png'),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),

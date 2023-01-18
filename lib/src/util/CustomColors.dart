@@ -14,5 +14,6 @@ class CustomColors{
   static Color c4= HexColor('#ffb3ff'); // Light Green
   static Color c5= HexColor('#ffc0cb'); // pink
   static Color c6= HexColor('#000000'); // pink
-
+  static Color c7= HexColor('#ffe6cc'); // pink
+  static Color c8= HexColor('#ff00ff'); //Fuchsia
 }
