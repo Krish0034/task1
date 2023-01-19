@@ -10,17 +10,17 @@ class ShowDailogBox extends StatefulWidget
 class _ShowDailogBoxState extends State<ShowDailogBox>
 {
   String data='';
-  late TextEditingController controller;
+  late TextEditingController controller1;
   @override
   void initState()
   {
     super.initState();
-    controller=TextEditingController();
+    controller1=TextEditingController();
   }
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    controller.dispose();
+    controller1.dispose();
     super.dispose();
   }
 
@@ -31,33 +31,38 @@ class _ShowDailogBoxState extends State<ShowDailogBox>
        SizedBox(height: 10,),
        Container(
          width: 200,
-         height: 100,
+         height: 70,
          child: ElevatedButton(
            style:ElevatedButton.styleFrom(
-             elevation: 0,
-             backgroundColor: CustomColors.c2
+             fixedSize: const Size(200, 80),
+             shape: RoundedRectangleBorder(
+             borderRadius: BorderRadius.circular(50)),
+             elevation: 2,
+             backgroundColor: CustomColors.c10
            ),
            onPressed: ()async {
              final data1= await openDialog();
-             if(data1== null) return ;
+             if(data1== null) return null;
              setState(() {
                data=data1;
              });
              print(data);
            },
            child: Text('ShowDailog',style:TextStyle(
-             color: CustomColors.c5,
+             color: CustomColors.c11,
              fontSize: 25
            ),),
 
          )
        ),
-       SizedBox(height: 10,),
+       SizedBox(height: 20,),
        Container(
          height: 200,
-         width: 200,
+         width: MediaQuery.of(context).size.width,
          color: CustomColors.c5,
-         child: Text(data,style: TextStyle(
+         child: Text('Data:-> '+data,
+           style: TextStyle(
+           color: CustomColors.c6,
            fontSize: 25
          ),),
        )
@@ -68,25 +73,43 @@ class _ShowDailogBoxState extends State<ShowDailogBox>
 
   Future openDialog() => showDialog(context: context,
       builder: (context)=>AlertDialog(
-        title: const Text('Type Data'),
+        title:Text('Type Data',
+            style: TextStyle(
+              color: CustomColors.c6,
+              fontSize: 20,
+              backgroundColor: CustomColors.c1,
+            ),
+        ),
         content: TextField(
           autofocus: true,
             decoration: InputDecoration(
               hintText: 'Enter Data',
             ),
-          controller: controller,
+          controller: controller1,
           ),
         actions: [
           TextButton(
-            child: Text("Cencel"),
+            child: Text("Cencel",
+              style: TextStyle(
+                  color: CustomColors.c11,
+                  fontSize: 15,
+                  letterSpacing: 1.0
+              ),
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           TextButton(
-            child: Text("Submit"),
+            child: Text("Submit",
+              style: TextStyle(
+                color: CustomColors.c12,
+                fontSize: 15,
+                letterSpacing: 1.0
+              ),
+            ),
             onPressed: () {
-             Navigator.of(context).pop(controller.text);
+             Navigator.of(context).pop(controller1.text);
             },
           ),
         ],

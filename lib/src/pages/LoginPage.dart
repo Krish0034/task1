@@ -12,149 +12,186 @@ class LoginPage extends StatefulWidget
 }
 class _LoginPageState extends State<LoginPage>
 {
+  late TextEditingController controller1;
+  late TextEditingController controller2;
+  @override
+  void initState()
+  {
+    super.initState();
+    controller1=TextEditingController();
+    controller2=TextEditingController();
+  }
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    controller1.dispose();
+    controller2.dispose();
+    super.dispose();
+  }
+  String email='admin';
+  String password='admin';
   @override
   Widget build(BuildContext context)
   {
     return SafeArea(
         child: Scaffold(
           backgroundColor: CustomColors.c1,
-          body:Column(
-            children: [
-              Stack(
-                children:[
-                Padding(
-                  padding:  const EdgeInsets.only(top: 20),
-                  child: Container(
-                  width: MediaQuery.of(context).size.width /2,
-                  height: MediaQuery.of(context).size.height/4,
-                  decoration: BoxDecoration(
-                    color: CustomColors.c5.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(100)
-                  ),
-                  child:ClipOval(
-                    child: Image.network('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'),
+          body:SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: [
+                Stack(
+                  children:[
+                  Padding(
+                    padding:  const EdgeInsets.only(top: 20),
+                    child: Container(
+                    width: MediaQuery.of(context).size.width /2,
+                    height: MediaQuery.of(context).size.height/4,
+                    decoration: BoxDecoration(
+                      color: CustomColors.c5.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(100)
                     ),
-                  ),
-                ),  //ImageUploaded
-                ]
-              ),
-              Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
+                    child:ClipOval(
+                      child: Image.network('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg'),
+                      ),
+                    ),
+                  ), //ImageUploaded
+                  ]
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Email',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
+                Container(
+                    width: double.infinity,
+                    height: 500,
+                    decoration: BoxDecoration(
+                      color: CustomColors.c9,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
                       ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: CustomColors.c4,
-                        ),
-                        child: const TextField(
-                          style: TextStyle(
-                              color: Colors.white,
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(
-                              Icons.email,
-                              color: Colors.white,
-                            ),
-                            hintText: 'Email',
-                            hintStyle: TextStyle(color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 1.0,
-                              fontSize: 20
+                    ),
+                    child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15),
+                          child: const Text(
+                            'Email',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      const Text(
-                        'Password',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: CustomColors.c4,
-                        ),
-                        child:const TextField(
-                          style: TextStyle(
-                            color: Colors.white,
+                        const SizedBox(height: 10),
+                        Container(
+                          margin: EdgeInsets.only(left: 15,right: 15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: CustomColors.c1,
                           ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(
-                              Icons.lock,
-                              color: Colors.white,
+                          child:TextField(
+                            cursorHeight: 28,
+                            controller: controller1,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25
                             ),
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: Icon(
+                                Icons.email,
+                                color: Colors.black26,
+                              ),
+                              hintText: 'Enter Email',
+                              hintStyle: TextStyle(
+                                color: Colors.black26,
                                 letterSpacing: 1.0,
                                 fontSize: 20
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 35),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(
-                                  builder: (context) => AfterLoginPages()));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.green,
+                        const SizedBox(height: 15),
+                        Padding(
+                          padding:  EdgeInsets.only(left: 15),
+                          child: const Text(
+                            'Password',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+
+                            ),
                           ),
-                          child: const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Log In',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
+                        ),
+                        const SizedBox(height: 15),
+                        Container(
+                          margin: EdgeInsets.only(left: 15,right: 15),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: CustomColors.c1,
+                          ),
+                          child: TextField(
+                            controller: controller2,
+                            cursorHeight: 28,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25
+                            ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.black26,
+                              ),
+                              hintText: 'Enter Password',
+                              hintStyle: TextStyle(color: Colors.black26,
+                                  letterSpacing: 1.0,
+                                  fontSize: 20
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 35),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15,right: 15),
+                          child: GestureDetector(
+                            onTap: () {
+                              if(email==controller1.text && password==controller2.text) {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AfterLoginPages()));
+                              }
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Colors.green,
+                              ),
+                              child: const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Text(
+                                    'Log In',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+            ],
         ),
+          ),
       ),
     );
 

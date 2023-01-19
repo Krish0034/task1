@@ -21,6 +21,7 @@ class _AfterLoginPagesState extends State<AfterLoginPages>
      child: Scaffold(
            appBar: AppBar(
              backgroundColor: CustomColors.c1,
+             elevation: 0.1,
              bottom: TabBar(
                isScrollable: true,
                indicator: BoxDecoration(
@@ -32,14 +33,12 @@ class _AfterLoginPagesState extends State<AfterLoginPages>
                  ),
                ),
                tabs: [
-
-                   Tab(child: Text("DateTimePicker",style:TextStyle(fontSize:20),),),
-                   Tab(child: Text("ShowDailogBox",style:TextStyle(fontSize:20),), ),
-                   Tab(child: Text("CheckedBoxPage",style:TextStyle(fontSize:20),), ),
-
+                   Tab(child: Text("DateTimePicker",style:TextStyle(fontSize:20,letterSpacing: 1.0),),),
+                   Tab(child: Text("ShowDailogBox",style:TextStyle(fontSize:20,letterSpacing: 1.0)),),
+                   Tab(child: Text("CheckedBoxPage",style:TextStyle(fontSize:20,letterSpacing: 1.0),),),
                ],
-               labelColor:CustomColors.c8 ,
-               unselectedLabelColor: CustomColors.c4,
+               labelColor:CustomColors.c6,
+               unselectedLabelColor: CustomColors.c14,
              ),
            ),
        body: TabBarView(
